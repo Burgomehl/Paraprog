@@ -1,0 +1,5 @@
+const B=3
+range A= 0..B
+BARRIER = BARRIER[0],
+BARRIER[i:A] = (when(i==B)reset->BARRIER[0]
+				|when(i<B)wait->BARRIER[i+1]).

@@ -1,0 +1,10 @@
+const M = 5 // Kapazitaet des Bueffets
+Buffer(M = 5) = Speicher[5],
+Speicher[i:0..M] = ( when (i>0) gehEssen -> Speicher[i-1]
+| when (i==0) fuelleBueffet -> Speicher[i+5]).
+
+set K = {a, b, c} // Menge der Kannibalen
+Kannibale(T='a) = Kannibale[0],
+Kannibale[i:0..3] = (gehEssen -> binZufrieden -> Kannibale).
+Koch = (koche -> fuelleBueffet -> Koch).
+||Buefett = (forall [k:K] Kannibale(k) ||Buffer(5) || Koch).
