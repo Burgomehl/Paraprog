@@ -7,7 +7,15 @@ public class EinzelPufferMonitor {
 	private Semaphore semaphore = new Semaphore(1);
 
 	public void rein() throws InterruptedException {
-		semaphore.acquire();
+		boolean leer = true;
+		while(leer){
+			semaphore.acquire();
+			if(count>0){
+				semaphore.release();
+			}else{
+				leer = false;
+			}
+		}
 		++count;
 		System.out.println("rein "+count);
 		semaphore.release();
