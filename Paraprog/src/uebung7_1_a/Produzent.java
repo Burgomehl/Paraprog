@@ -12,7 +12,7 @@ public class Produzent extends Thread {
 	public void run() {
 		for (int i = 0; i < 25; i++) {
 			try {
-//				sleep(100);
+				sleep(100);
 				einzelPufferMonitor.rein();
 			} catch (InterruptedException e) {
 				e.printStackTrace();

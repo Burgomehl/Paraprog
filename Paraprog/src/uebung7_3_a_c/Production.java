@@ -17,12 +17,12 @@ public class Production extends Thread{
 			try {
 				System.out.println("prod"+name);
 				System.out.println("fertig"+name);
-				barrier.sync();
-				sleep(100);
+				barrier.sync(this);
+//				sleep(100);
 				System.out.println("montage"+name);
 				System.out.println("montiert"+name);
-				barrier.sync();
-				sleep(100);
+				barrier.sync(this);
+//				sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
