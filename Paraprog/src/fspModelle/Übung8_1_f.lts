@@ -1,0 +1,7 @@
+range A = 0..3
+set B ={a,b,c}
+BUTTLER = BUTTLER[0],
+BUTTLER[i:A]=(when(i!=3)setzen->BUTTLER[i+1]
+				| aufstehen->BUTTLER[i-1]).
+Philo=(setzen->essen->aufstehen->Philo).
+||Philoessen=(BUTTLER||B:Philo).

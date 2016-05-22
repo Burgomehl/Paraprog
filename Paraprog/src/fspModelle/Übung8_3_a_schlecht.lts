@@ -1,0 +1,17 @@
+FELD0=(gehe_raus->STOPP
+		|gehe_zu_eins->FELD1),
+FELD1=(gehe_zu_null->FELD0
+		|gehe_zu_vier->FELD4
+		|gehe_zu_zwei->FELD2),
+FELD2=(gehe_zu_eins->FELD1
+		|gehe_zu_fünf->FELD5),
+FELD5=(gehe_zu_zwei->FELD2
+		|gehe_zu_acht->FELD8),
+FELD8=(gehe_zu_fünf->FELD5
+		|gehe_zu_sieben->FELD7),
+FELD7=(gehe_zu_acht->FELD8),
+FELD4=(gehe_zu_eins->FELD1
+		|gehe_zu_drei->FELD3),
+FELD3=(gehe_zu_vier->FELD4
+		|gehe_zu_sechs->FELD6),
+FELD6=(gehe_zu_drei->FELD3).

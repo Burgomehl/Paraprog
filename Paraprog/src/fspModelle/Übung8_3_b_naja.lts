@@ -1,0 +1,20 @@
+range A=0..8
+Labyrinth=Labyrinth[8],
+Labyrinth[i:A]=(when(i==8)gehe_zu_sieben->Labyrinth[7]
+				|when(i==8)gehe_zu_fünf->Labyrinth[5]
+				|when(i==7)gehe_zu_acht->Labyrinth[8]
+				|when(i==5)gehe_zu_acht->Labyrinth[8]
+				|when(i==5)gehe_zu_zwei->Labyrinth[2]
+				|when(i==2)gehe_zu_fünf->Labyrinth[5]
+				|when(i==2)gehe_zu_eins->Labyrinth[1]
+				|when(i==1)gehe_zu_zwei->Labyrinth[2]
+				|when(i==1)gehe_zu_null->Labyrinth[0]
+				|when(i==0)raus->STOPP
+				|when(i==0)gehe_zu_eins->Labyrinth[1]	
+				|when(i==4)gehe_zu_eins->Labyrinth[1]
+				|when(i==4)gehe_zu_drei->Labyrinth[3]
+				|when(i==3)gehe_zu_vier->Labyrinth[4]
+				|when(i==3)gehe_zu_sechs->Labyrinth[6]
+				|when(i==6)gehe_zu_drei->Labyrinth[3]).
+
+||LABP=(Labyrinth[6] || Labyrinth[7]).
