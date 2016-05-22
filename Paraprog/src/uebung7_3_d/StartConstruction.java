@@ -5,7 +5,11 @@ import java.util.concurrent.CyclicBarrier;
 public class StartConstruction {
 	public static void main(String[] args) {
 		// Barrier barrier = new Barrier();
-		CyclicBarrier barrier = new CyclicBarrier(3, null);
+		CyclicBarrier barrier = new CyclicBarrier(3, new Runnable() {
+			public void run() {
+				System.out.println("Barriere fertig");
+			}
+		});
 		Production prodA = new Production(barrier, "A");
 		Production prodB = new Production(barrier, "B");
 		Production prodC = new Production(barrier, "C");

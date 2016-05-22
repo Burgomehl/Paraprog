@@ -4,7 +4,7 @@ public class Production extends Thread{
 	
 	private Barrier barrier;
 	private String name;
-	private static int runs = 20;
+	private static int runs = 10;
 	
 	public Production(Barrier barrier,String name) {
 		this.barrier = barrier;
@@ -17,12 +17,12 @@ public class Production extends Thread{
 			try {
 				System.out.println("prod"+name);
 				System.out.println("fertig"+name);
-				barrier.sync(this);
-//				sleep(100);
+				barrier.sync();
+				sleep((int)(Math.random()*100));
 				System.out.println("montage"+name);
 				System.out.println("montiert"+name);
-				barrier.sync(this);
-//				sleep(100);
+				barrier.sync();
+				sleep((int)(Math.random()*100));
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

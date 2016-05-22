@@ -8,15 +8,26 @@ public class Barrier {
 	List<Object> l = new Vector<>();
 	private boolean isRemoving = false;
 
-	public synchronized void sync(Object p) throws InterruptedException {
-		l.add(p);
-		while (l.contains(p) && !(l.size()>=process) && !isRemoving) {
+	public synchronized void sync() throws InterruptedException {
+		++count;
+		if (!(count>=process)) {
 			wait();
 		}
-		l.remove(p);
+		--count;
+		notifyAll();
+	}
+	
+	private int count = 0;
+	
+	public synchronized void sync(Object p) throws InterruptedException {
+		++count;
+		while (!(count>=process) && !isRemoving) {
+			wait();
+		}
+		--count;
 		isRemoving = true;
 		notifyAll();
-		if(l.size()<=0){
+		if(count<=0){
 			isRemoving = false;
 		}
 		while(isRemoving){
