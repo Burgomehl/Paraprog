@@ -1,5 +1,5 @@
 range A=0..8
-Labyrinth=Labyrinth[8],
+Labyrinth(Start=8)=Labyrinth[Start],
 Labyrinth[i:A]=(when(i==8)gehe_zu_sieben->Labyrinth[7]
 				|when(i==8)gehe_zu_fünf->Labyrinth[5]
 				|when(i==7)gehe_zu_acht->Labyrinth[8]
@@ -17,4 +17,4 @@ Labyrinth[i:A]=(when(i==8)gehe_zu_sieben->Labyrinth[7]
 				|when(i==3)gehe_zu_sechs->Labyrinth[6]
 				|when(i==6)gehe_zu_drei->Labyrinth[3]).
 
-||LABP=(Labyrinth[6] || Labyrinth[7]).
+||LABP=(a::Labyrinth(6) || b::Labyrinth(7)).
