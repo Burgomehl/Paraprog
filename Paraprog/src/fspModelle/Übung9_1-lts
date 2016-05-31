@@ -1,0 +1,29 @@
+const False = 0
+const True = 1
+range Bool = False..True
+range Kontostand = 0..10
+const NPersonen = 2
+
+Person = (willEinzahlen -> einzahlen -> fertigEinzahlen -> Person
+| willAbheben -> abheben -> fertigAbheben -> Person).
+
+KontoLock = Konto[5][0][False],
+
+Konto[stand:Kontostand][einzahler:0..NPersonen][amAbheben:Bool] = 
+( when (stand < 10 && !amAbheben && einzahler < NPersonen) willEinzahlen -> Konto[stand+1][einzahler+1][amAbheben]
+| when (einzahler > 0) fertigEinzahlen -> Konto[stand][einzahler-1][amAbheben]
+| when (stand >= 1 && !amAbheben) willAbheben -> Konto[stand-1][einzahler][True]
+| fertigAbheben -> Konto[stand][einzahler][False] ).
+
+property EinzahlenAbheben = (willEinzahlen -> AmEinzahlen[1] 
+| willAbheben -> AmAbheben),
+
+AmEinzahlen[i:1..NPersonen] = (when (i < NPersonen) willEinzahlen -> AmEinzahlen[i+1]
+| when (i > 1) fertigEinzahlen -> AmEinzahlen[i-1]
+| when (i == 1) fertigEinzahlen -> EinzahlenAbheben),
+
+AmAbheben = (fertigAbheben -> EinzahlenAbheben).
+
+||EALock = (KontoLock || EinzahlenAbheben).
+
+||GiroKonto = (p[1..NPersonen]:Person || {p[1..NPersonen]}::EALock).
