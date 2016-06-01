@@ -5,26 +5,26 @@ public class Konto {
 	private boolean amAbheben;
 	private int einzahler;
 
-	private synchronized void willEinzahlen() throws InterruptedException {
+	private  void willEinzahlen() throws InterruptedException {
 		while (amAbheben) {
 			wait();
 		}
 		++einzahler;
 	}
 
-	private synchronized void fertigeinzahlen() {
+	private  void fertigeinzahlen() {
 		--einzahler;
 		notifyAll();
 	}
 	
-	private synchronized void willAbheben() throws InterruptedException{
+	private  void willAbheben() throws InterruptedException{
 		while(kontostand<=0 && einzahler>0){
 			wait();
 		}
 		amAbheben = true;
 	}
 	
-	private synchronized void fertigAbheben(){
+	private  void fertigAbheben(){
 		amAbheben = false;
 		notifyAll();
 	}
