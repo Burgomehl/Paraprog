@@ -42,7 +42,6 @@ public class Person extends Thread {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		abheben();
 	}
 
 	public void abheben() {
